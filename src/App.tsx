@@ -10,25 +10,14 @@ import { Cycles } from './components/Cycles';
 import { DefaultButton } from './components/Button';
 import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import { Footer } from './components/Footer';
-import { Heading } from './components/Heading';
-import { useState } from 'react';
 
 export function App() {
   // Quero que todos os componentes que usam 'numero'
   // Saibam das mudanças em seu valor
 
   // Sempre que eu usar useState, não vou usar atribuição diretamente
-  const [numero, setNumero] = useState(0);
-
-  function handleClick() {
-    setNumero(numero + 1);
-  }
-
   return (
     <>
-      <Heading>Numero: {numero}</Heading>
-      <button onClick={handleClick}>Aumenta</button>
-
       <Container>
         <Logo />
       </Container>
@@ -47,7 +36,7 @@ export function App() {
             <DefaultInput
               type='text'
               id='input'
-              labelText={numero.toString()}
+              labelText='Task'
               placeholder='Digite Algo'
             />
           </div>
