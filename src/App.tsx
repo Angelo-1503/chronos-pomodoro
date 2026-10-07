@@ -1,64 +1,25 @@
-import { Container } from './components/Container';
-import { Logo } from './components/Logo';
-import { Menu } from './components/Menu';
+import { Home } from './pages/Home';
 
 import './styles/theme.css';
 import './styles/global.css';
-import { CountDown } from './components/CountDown';
-import { DefaultInput } from './components/DefaultInput';
-import { Cycles } from './components/Cycles';
-import { DefaultButton } from './components/Button';
-import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
-import { Footer } from './components/Footer';
+import { useState } from 'react';
+import type { TaskStateModel } from './models/TaskStateModel';
+
+const initialState: TaskStateModel = {
+  tasks: [],
+  secondsRemaining: 0,
+  formattedSecondsRemaining: '00:00',
+  activeTask: null,
+  currentCycle: 0,
+  config: {
+    workTime: 25,
+    shortBreakTime: 5,
+    longBreakTime: 15,
+  },
+};
 
 export function App() {
-  // Quero que todos os componentes que usam 'numero'
-  // Saibam das mudanças em seu valor
+  const [state, setState] = useState(initialState);
 
-  // Sempre que eu usar useState, não vou usar atribuição diretamente
-  return (
-    <>
-      <Container>
-        <Logo />
-      </Container>
-
-      <Container>
-        <Menu />
-      </Container>
-
-      <Container>
-        <CountDown />
-      </Container>
-
-      <Container>
-        <form action='' className='form'>
-          <div className='formRow'>
-            <DefaultInput
-              type='text'
-              id='input'
-              labelText='Task'
-              placeholder='Digite Algo'
-            />
-          </div>
-
-          <div className='formRow'>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-
-          <div className='formRow'>
-            <Cycles />
-          </div>
-
-          <div className='formRow'>
-            <DefaultButton icon={<PlayCircleIcon />} color='green' />
-            <DefaultButton icon={<StopCircleIcon />} color='red' />
-          </div>
-        </form>
-      </Container>
-
-      <Container>
-        <Footer />
-      </Container>
-    </>
-  );
+  return <Home state={state} setState={setState} />;
 }
